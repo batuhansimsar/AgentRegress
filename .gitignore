@@ -1,0 +1,79 @@
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+pip-wheel-metadata/
+*.pyd
+
+# ─── Virtual Environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# ─── Environment Variables ────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.env
+
+# ─── API Keys / Secrets (NEVER commit) ───────────────────────────────────────
+secrets.json
+config/secrets.yaml
+*_key.json
+*.pem
+*.key
+
+# ─── IDE / Editor ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Testing & Coverage ───────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+coverage.xml
+*.cover
+
+# ─── Node (dashboard deps, if any) ────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Database files ───────────────────────────────────────────────────────────
+datasets/sample_webapp/db/*.db
+*.sqlite
+*.sqlite3
+
+# ─── Large result files (keep sample_run.json, ignore big ones) ───────────────
+results/full_run_*.json
+results/large_*.json
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Temp / scratch ───────────────────────────────────────────────────────────
+tmp/
+temp/
+scratch/
+.tmp/
+
+# ─── Agent output caches ──────────────────────────────────────────────────────
+agents/cache/
+experiments/cache/
