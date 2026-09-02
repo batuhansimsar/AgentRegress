@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentRegress — Security Regression Analysis Dashboard</title>
+  <meta name="description" content="AgentRegress: Measuring security regressions introduced during autonomous coding agent repair loops. Research dashboard for Whack-a-Mole Security paper." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="brand-badge">
+        <span class="badge-icon">🔬</span>
+        <span class="badge-label">RESEARCH FRAMEWORK</span>
+      </div>
+      <h1 class="brand-title">Agent<span class="brand-accent">Regress</span></h1>
+      <p class="brand-subtitle">Whack-a-Mole Security: Measuring Security Regressions in Autonomous Code Repair</p>
+    </div>
+    <nav class="header-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-btn active" id="nav-overview" data-panel="overview">Overview</button>
+      <button class="nav-btn" id="nav-timeline" data-panel="timeline">Timeline</button>
+      <button class="nav-btn" id="nav-agents" data-panel="agents">Agent Comparison</button>
+      <button class="nav-btn" id="nav-graph" data-panel="graph">Vuln Graph</button>
+      <button class="nav-btn" id="nav-rq" data-panel="rq">Research Questions</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ══ MAIN ═════════════════════════════════════════════════════════════════ -->
+<main class="site-main">
+
+  <!-- ── PANEL: OVERVIEW ────────────────────────────────────────────────── -->
+  <section id="panel-overview" class="panel active">
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card" id="stat-experiments">
+        <div class="stat-value" id="sv-experiments">—</div>
+        <div class="stat-label">Experiments Run</div>
+        <div class="stat-detail">4 agents × 13 tasks</div>
+      </div>
+      <div class="stat-card highlight-red" id="stat-srr">
+        <div class="stat-value" id="sv-srr">—</div>
+        <div class="stat-label">Avg Security Regression Rate</div>
+        <div class="stat-detail">new vulns per iteration</div>
+      </div>
+      <div class="stat-card highlight-amber" id="stat-regressions">
+        <div class="stat-value" id="sv-regressions">—</div>
+        <div class="stat-label">Total Regressions Detected</div>
+        <div class="stat-detail">across all runs</div>
+      </div>
+      <div class="stat-card highlight-blue" id="stat-hallucinations">
+        <div class="stat-value" id="sv-hallucinations">—</div>
+        <div class="stat-label">Hallucinated Packages</div>
+        <div class="stat-detail">supply-chain risk</div>
+      </div>
+      <div class="stat-card highlight-green" id="stat-solve">
+        <div class="stat-value" id="sv-solve">—</div>
+        <div class="stat-label">Average Solve Rate</div>
+        <div class="stat-detail">task completed</div>
+      </div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="two-col">
+
+      <!-- Agent Comparison Table -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Agent Security Metrics</h2>
+          <span class="card-badge">RQ5</span>
+        </div>
+        <div class="card-body">
+          <table class="data-table" id="agent-metrics-table">
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th title="Security Regression Rate">SRR ↑bad</th>
+                <th title="Fix-to-Regression Ratio">FRR ↑good</th>
+                <th title="Repair Security Cost">RSC ↑bad</th>
+                <th>Solve %</th>
+                <th>Halluc %</th>
+              </tr>
+            </thead>
+            <tbody id="agent-table-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SRR Bar Chart -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Security Regression Rate by Agent</h2>
+          <span class="card-badge">SRR</span>
+        </div>
+        <div class="card-body">
+          <div id="srr-chart" class="chart-container"></div>
+          <p class="chart-note">
+            SRR = new vulnerabilities introduced ÷ repair iterations.
+            Lower is better.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /.two-col -->
+
+    <!-- Vulnerability Category Distribution -->
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Introduced Vulnerability Categories</h2>
+        <span class="card-badge">RQ2</span>
+      </div>
+      <div class="card-body">
+        <div id="vuln-category-chart" class="chart-container-wide"></div>
+        <p class="chart-note">
+          Distribution of newly introduced vulnerability types across all agent repair loops.
+          AI-specific categories (hallucinated dependency, security shortcut) are highlighted.
+        </p>
+      </div>
+    </div>
+
+    <!-- Error Trigger Analysis -->
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Error-Triggered Regression Patterns</h2>
+        <span class="card-badge">RQ3 · Exp4</span>
+      </div>
+      <div class="card-body">
+        <p class="section-description">
+          Which compiler/runtime error messages trigger which security regressions?
+          Agents receiving certain error types are significantly more likely to introduce specific vulnerability classes.
+        </p>
+        <div id="error-trigger-chart" class="chart-container-wide"></div>
+      </div>
+    </div>
+
+  </section><!-- /#panel-overview -->
+
+  <!-- ── PANEL: TIMELINE ────────────────────────────────────────────────── -->
+  <section id="panel-timeline" class="panel">
+
+    <div class="panel-toolbar">
+      <div class="toolbar-group">
+        <label class="toolbar-label" for="timeline-agent-select">Agent:</label>
+        <select id="timeline-agent-select" class="toolbar-select">
+          <option value="GPT-4o">GPT-4o</option>
+          <option value="Claude-3.5-Sonnet">Claude-3.5-Sonnet</option>
+          <option value="Gemini-2.0-Flash">Gemini-2.0-Flash</option>
+          <option value="DeepSeek-Coder">DeepSeek-Coder</option>
+        </select>
+      </div>
+      <div class="toolbar-group">
+        <label class="toolbar-label" for="timeline-task-select">Task:</label>
+        <select id="timeline-task-select" class="toolbar-select">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+      <button class="btn-primary" id="run-timeline-btn">Load Experiment</button>
+    </div>
+
+    <!-- Whack-a-Mole Visualization -->
+    <div class="card full-width" id="wam-card">
+      <div class="card-header">
+        <h2 class="card-title" id="wam-title">Whack-a-Mole Security Timeline</h2>
+        <div class="card-badges">
+          <span class="status-badge" id="wam-solve-badge">—</span>
+          <span class="status-badge" id="wam-secure-badge">—</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="timeline-vis" class="timeline-container">
+          <div class="timeline-placeholder">
+            <div class="placeholder-icon">🔍</div>
+            <p>Select an agent and task, then click "Load Experiment"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics for selected experiment -->
+    <div class="four-col" id="exp-metrics-row" style="display:none">
+      <div class="metric-chip" id="mc-srr">
+        <div class="mc-label">SRR</div>
+        <div class="mc-value" id="mcv-srr">—</div>
+      </div>
+      <div class="metric-chip" id="mc-frr">
+        <div class="mc-label">Fix/Regression</div>
+        <div class="mc-value" id="mcv-frr">—</div>
+      </div>
+      <div class="metric-chip" id="mc-rsc">
+        <div class="mc-label">RSC</div>
+        <div class="mc-value" id="mcv-rsc">—</div>
+      </div>
+      <div class="metric-chip" id="mc-churn">
+        <div class="mc-label">Security Churn</div>
+        <div class="mc-value" id="mcv-churn">—</div>
+      </div>
+    </div>
+
+    <!-- Regression event log -->
+    <div class="card full-width" id="regression-log-card" style="display:none">
+      <div class="card-header">
+        <h2 class="card-title">Regression Event Log</h2>
+        <span class="card-badge" id="reg-count-badge">0 events</span>
+      </div>
+      <div class="card-body">
+        <div id="regression-log"></div>
+      </div>
+    </div>
+
+  </section><!-- /#panel-timeline -->
+
+  <!-- ── PANEL: AGENT COMPARISON ────────────────────────────────────────── -->
+  <section id="panel-agents" class="panel">
+
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Agent-by-Agent Security Profile</h2>
+        <span class="card-badge">RQ5</span>
+      </div>
+      <div class="card-body">
+        <div id="radar-chart" class="chart-container-wide chart-tall"></div>
+        <p class="chart-note">
+          Multi-dimensional security profile per agent.
+          Higher solve rate and FRR are better; lower SRR, RSC, hallucination are better.
+        </p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Solve Rate vs. Security Risk</h2>
+          <span class="card-badge">Trade-off</span>
+        </div>
+        <div class="card-body">
+          <div id="tradeoff-chart" class="chart-container"></div>
+          <p class="chart-note">
+            X-axis: task solve rate. Y-axis: avg repair security cost (RSC).
+            Ideal agent: top-left (high solve, low cost).
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Regressions per Task Type</h2>
+          <span class="card-badge">RQ1</span>
+        </div>
+        <div class="card-body">
+          <div id="tasktype-chart" class="chart-container"></div>
+          <p class="chart-note">
+            Type A: vulnerability repair. Type B: functional bug repair.
+            Type C: feature addition.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Security Shortcut Usage</h2>
+        <span class="card-badge">SSR</span>
+      </div>
+      <div class="card-body">
+        <div id="shortcut-chart" class="chart-container-wide"></div>
+        <p class="chart-note">
+          Security Shortcut Rate (SSR): how often agents bypass security controls to resolve errors
+          (e.g., verify=False, chmod 777, CORS wildcard, CSRF disable).
+        </p>
+      </div>
+    </div>
+
+  </section><!-- /#panel-agents -->
+
+  <!-- ── PANEL: VULNERABILITY GRAPH ─────────────────────────────────────── -->
+  <section id="panel-graph" class="panel">
+
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Vulnerability Transition Graph</h2>
+        <span class="card-badge">Cross-Class Regression</span>
+      </div>
+      <div class="card-body">
+        <p class="section-description">
+          Directed graph showing which fixed vulnerability class leads to which introduced vulnerability class.
+          Thicker edges = more frequent transitions. Red nodes = AI-specific vulnerabilities.
+          This is the "Whack-a-Mole" pattern visualized at scale.
+        </p>
+        <div id="vuln-graph-svg" class="graph-container"></div>
+        <div class="graph-legend">
+          <div class="legend-item"><span class="legend-dot standard"></span> Standard CWE</div>
+          <div class="legend-item"><span class="legend-dot ai-specific"></span> AI-Specific</div>
+          <div class="legend-item"><span class="legend-line thick"></span> High frequency transition</div>
+          <div class="legend-item"><span class="legend-line thin"></span> Low frequency transition</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Regression Distance Distribution</h2>
+        <span class="card-badge">Spatial Analysis</span>
+      </div>
+      <div class="card-body">
+        <div id="distance-chart" class="chart-container-wide"></div>
+        <p class="chart-note">
+          How far (spatially in the codebase) are introduced vulnerabilities from the agent's modification point?
+          Cross-system regressions (e.g., auth fix → Docker vulnerability) are the most dangerous.
+        </p>
+      </div>
+    </div>
+
+  </section><!-- /#panel-graph -->
+
+  <!-- ── PANEL: RESEARCH QUESTIONS ──────────────────────────────────────── -->
+  <section id="panel-rq" class="panel">
+
+    <div class="rq-grid">
+
+      <div class="rq-card" id="rq1">
+        <div class="rq-header">
+          <span class="rq-number">RQ1</span>
+          <h3 class="rq-question">How frequently do autonomous coding agents introduce security regressions while fixing software defects?</h3>
+        </div>
+        <div class="rq-body">
+          <div id="rq1-chart" class="rq-chart"></div>
+          <div class="rq-finding" id="rq1-finding">Loading...</div>
+        </div>
+      </div>
+
+      <div class="rq-card" id="rq2">
+        <div class="rq-header">
+          <span class="rq-number">RQ2</span>
+          <h3 class="rq-question">What types of vulnerabilities are most commonly introduced during repair?</h3>
+        </div>
+        <div class="rq-body">
+          <div id="rq2-chart" class="rq-chart"></div>
+          <div class="rq-finding" id="rq2-finding">Loading...</div>
+        </div>
+      </div>
+
+      <div class="rq-card" id="rq3">
+        <div class="rq-header">
+          <span class="rq-number">RQ3</span>
+          <h3 class="rq-question">Does the type of original bug influence the type of resulting security regression?</h3>
+        </div>
+        <div class="rq-body">
+          <div id="rq3-chart" class="rq-chart"></div>
+          <div class="rq-finding" id="rq3-finding">Loading...</div>
+        </div>
+      </div>
+
+      <div class="rq-card" id="rq4">
+        <div class="rq-header">
+          <span class="rq-number">RQ4</span>
+          <h3 class="rq-question">Do repeated agent iterations increase or decrease security risk?</h3>
+        </div>
+        <div class="rq-body">
+          <div id="rq4-chart" class="rq-chart"></div>
+          <div class="rq-finding" id="rq4-finding">Loading...</div>
+        </div>
+      </div>
+
+      <div class="rq-card" id="rq5">
+        <div class="rq-header">
+          <span class="rq-number">RQ5</span>
+          <h3 class="rq-question">Do different coding agents exhibit different security regression patterns?</h3>
+        </div>
+        <div class="rq-body">
+          <div id="rq5-chart" class="rq-chart"></div>
+          <div class="rq-finding" id="rq5-finding">Loading...</div>
+        </div>
+      </div>
+
+      <div class="rq-card" id="rq6">
+        <div class="rq-header">
+          <span class="rq-number">RQ6</span>
+          <h3 class="rq-question">Can security-aware feedback reduce repair-induced regressions?</h3>
+        </div>
+        <div class="rq-body">
+          <div class="experiment-comparison">
+            <div class="exp-col">
+              <div class="exp-label">Exp1 — Baseline</div>
+              <div class="exp-desc">Compiler + test feedback only</div>
+              <div class="exp-metrics" id="exp1-metrics">Loading...</div>
+            </div>
+            <div class="exp-col">
+              <div class="exp-label highlight">Exp2 — Security-Aware</div>
+              <div class="exp-desc">+ SAST + dependency + security policy</div>
+              <div class="exp-metrics" id="exp2-metrics">Loading...</div>
+            </div>
+            <div class="exp-col">
+              <div class="exp-label">Exp3 — Self-Correction</div>
+              <div class="exp-desc">"Review your own changes for security"</div>
+              <div class="exp-metrics" id="exp3-metrics">Loading...</div>
+            </div>
+          </div>
+          <div class="rq-finding" id="rq6-finding">Loading...</div>
+        </div>
+      </div>
+
+    </div><!-- /.rq-grid -->
+
+    <!-- Taxonomy Reference -->
+    <div class="card full-width">
+      <div class="card-header">
+        <h2 class="card-title">AgentRegress Vulnerability Taxonomy</h2>
+        <span class="card-badge">Framework</span>
+      </div>
+      <div class="card-body">
+        <div class="taxonomy-grid" id="taxonomy-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /#panel-rq -->
+
+</main>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>AgentRegress</strong> · Whack-a-Mole Security Research Framework
+    </div>
+    <div class="footer-center">
+      RQ1–RQ6 · SRR · FRR · RSC · Security Churn · Regression Distance · Vulnerability Migration
+    </div>
+    <div class="footer-right">
+      Builds on: Jadliwala et al. 2025 (Package Hallucination) · OWASP Top 10 · CWE
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/graphs.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
