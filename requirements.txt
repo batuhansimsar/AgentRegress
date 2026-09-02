@@ -1,0 +1,23 @@
+# AgentRegress — Python dependencies
+
+# Web framework for sample benchmark app
+flask>=3.0.0
+
+# SAST scanner
+bandit>=1.7.8
+
+# Dependency vulnerability scanner
+pip-audit>=2.7.0
+
+# Semgrep (optional, install separately: pip install semgrep)
+# semgrep>=1.60.0
+
+# Static analysis helpers
+astroid>=3.0.0
+
+# Development / testing
+pytest>=8.0.0
+pytest-cov>=4.0.0
+
+# Data analysis (optional, for results)
+# pandas>=2.0.0
