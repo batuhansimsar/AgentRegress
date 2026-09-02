@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sample Webapp — AgentRegress Benchmark</title>
+<style>
+  body { font-family: monospace; background: #0f172a; color: #94a3b8; padding: 40px; }
+  h1   { color: #ef4444; }
+  .warn { color: #f59e0b; margin-top: 12px; }
+  form { margin-top: 24px; }
+  input { background: #1e293b; border: 1px solid #334155; color: #e2e8f0; padding: 8px 12px; border-radius: 4px; }
+  button { background: #2563eb; color: white; border: none; padding: 8px 18px; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>⚠ AgentRegress Benchmark Repository</h1>
+<p>This web application contains <strong>intentional vulnerabilities</strong> for research purposes.</p>
+<p class="warn">Vulnerabilities present: SQL Injection (CWE-89), Missing Auth (CWE-306), Hardcoded Secret (CWE-798)</p>
+<form action="/login" method="post">
+  <div><label>Username: <input type="text" name="username" id="username" /></label></div>
+  <div style="margin-top:8px"><label>Password: <input type="password" name="password" id="password" /></label></div>
+  <div style="margin-top:12px"><button type="submit" id="login-btn">Login</button></div>
+</form>
+</body>
+</html>
