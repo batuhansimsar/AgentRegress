@@ -1,8 +1,12 @@
 """
 AgentRegress — Vulnerability Taxonomy
-CWE/OWASP-based classification with AI-specific categories.
+CWE/OWASP-based classification + AgentRegress AI-specific taxonomy (AR-xxx).
+
+NOTE on naming: AI-specific categories use the "AR-" prefix (AgentRegress Taxonomy),
+not the official MITRE CWE prefix, to avoid confusion with the CWE standard.
 """
 
+import hashlib
 from enum import Enum
 from dataclasses import dataclass, field
 from typing import Optional
@@ -54,7 +58,8 @@ class VulnCategory(Enum):
     FILE_PERMISSION = "file_permission"
     HARDCODED_SECRET = "hardcoded_secret"
 
-    # AI-specific categories (novel for this paper)
+    # AgentRegress AI-specific taxonomy (AR-xxx) — novel for this paper
+    # NOT official MITRE CWE identifiers
     HALLUCINATED_DEPENDENCY = "hallucinated_dependency"
     UNSAFE_DEPENDENCY_REPLACEMENT = "unsafe_dep_replacement"
     INSECURE_VERSION_DOWNGRADE = "insecure_version_downgrade"
@@ -81,35 +86,57 @@ class SecurityShortcutType(Enum):
 
 @dataclass
 class CWEEntry:
-    """CWE (Common Weakness Enumeration) entry."""
-    cwe_id: str            # e.g., "CWE-89"
+    """
+    CWE (Common Weakness Enumeration) entry, plus AgentRegress AI-specific entries.
+    AI-specific entries use the "AR-" prefix, NOT official MITRE CWE IDs.
+    """
+    cwe_id: str            # e.g., "CWE-89" or "AR-001" (AgentRegress taxonomy)
     name: str              # e.g., "SQL Injection"
     category: VulnCategory
     default_severity: Severity
     owasp_category: Optional[str] = None
     description: str = ""
-    ai_specific: bool = False
+    ai_specific: bool = False  # True for AR-xxx entries
 
 
 @dataclass
 class Vulnerability:
     """
     A single detected vulnerability instance.
+
+    Identity is determined by `fingerprint`, which is stable across line-number
+    shifts caused by agent edits. Two vulnerabilities with the same fingerprint
+    are considered the "same" vulnerability for regression tracking purposes.
     """
-    id: str                             # Unique identifier
-    cwe: str                            # CWE ID
+    id: str                             # Unique run-level identifier
+    cwe: str                            # CWE ID (or AR-xxx for AI-specific)
     name: str                           # Human-readable name
     category: VulnCategory
     severity: Severity
     file_path: str                      # File where detected
     line_number: Optional[int] = None
-    snippet: Optional[str] = None       # Code snippet
+    function_name: Optional[str] = None # Function/method containing the vuln
+    snippet: Optional[str] = None       # Code snippet (used in fingerprint)
+    rule_id: Optional[str] = None       # Scanner-specific rule ID (e.g. B608)
     tool: str = "unknown"               # Scanner that found it
     description: str = ""
     ai_specific: bool = False
     shortcut_type: Optional[SecurityShortcutType] = None
     iteration: int = 0                  # Agent iteration when detected
     timestamp: Optional[str] = None
+
+    @property
+    def fingerprint(self) -> str:
+        """
+        Stable identity key for a vulnerability instance.
+        Survives line-number shifts caused by agent edits.
+        Components: CWE + file_path + function_name + normalized snippet hash.
+        Two instances with the same fingerprint are considered the same vuln.
+        """
+        normalized_snippet = (self.snippet or "").strip()[:200]
+        snippet_hash = hashlib.sha256(normalized_snippet.encode()).hexdigest()[:12]
+        fn = (self.function_name or "").strip()
+        return f"{self.cwe}::{self.file_path}::{fn}::{snippet_hash}"
 
     def to_dict(self) -> dict:
         return {
@@ -126,12 +153,19 @@ class Vulnerability:
             "description": self.description,
             "ai_specific": self.ai_specific,
             "shortcut_type": self.shortcut_type.value if self.shortcut_type else None,
+            "rule_id": self.rule_id,
+            "function_name": self.function_name,
+            "fingerprint": self.fingerprint,
             "iteration": self.iteration,
             "timestamp": self.timestamp,
         }
 
 
-# ─── CWE Knowledge Base ────────────────────────────────────────────────────────
+# ─── CWE + AgentRegress (AR) Knowledge Base ───────────────────────────────────
+#
+# Standard entries use official MITRE CWE IDs ("CWE-89" etc.).
+# AI-specific entries use the AgentRegress taxonomy prefix "AR-" ("AR-001" etc.).
+# Do NOT cite AR-xxx entries as MITRE CWE identifiers in academic work.
 
 CWE_DATABASE: dict[str, CWEEntry] = {
     "CWE-89": CWEEntry(
@@ -215,8 +249,11 @@ CWE_DATABASE: dict[str, CWEEntry] = {
         owasp_category="A06:2021 – Vulnerable and Outdated Components",
         description="Application depends on a component with known vulnerabilities.",
     ),
-    "CWE-AI-001": CWEEntry(
-        cwe_id="CWE-AI-001",
+    # ── AgentRegress AI-Specific Taxonomy (AR-xxx) ────────────────────────────
+    # These are NOT official MITRE CWE identifiers.
+    # Prefix "AR" stands for AgentRegress Taxonomy.
+    "AR-001": CWEEntry(
+        cwe_id="AR-001",
         name="Hallucinated Dependency",
         category=VulnCategory.HALLUCINATED_DEPENDENCY,
         default_severity=Severity.HIGH,
@@ -224,8 +261,8 @@ CWE_DATABASE: dict[str, CWEEntry] = {
         description="Agent installed a non-existent or hallucinated package, enabling supply-chain attacks.",
         ai_specific=True,
     ),
-    "CWE-AI-002": CWEEntry(
-        cwe_id="CWE-AI-002",
+    "AR-002": CWEEntry(
+        cwe_id="AR-002",
         name="Insecure Version Downgrade",
         category=VulnCategory.INSECURE_VERSION_DOWNGRADE,
         default_severity=Severity.MEDIUM,
@@ -233,8 +270,8 @@ CWE_DATABASE: dict[str, CWEEntry] = {
         description="Agent replaced a secure library version with an older, vulnerable one.",
         ai_specific=True,
     ),
-    "CWE-AI-003": CWEEntry(
-        cwe_id="CWE-AI-003",
+    "AR-003": CWEEntry(
+        cwe_id="AR-003",
         name="Security Shortcut",
         category=VulnCategory.SECURITY_SHORTCUT,
         default_severity=Severity.HIGH,
@@ -242,8 +279,8 @@ CWE_DATABASE: dict[str, CWEEntry] = {
         description="Agent bypassed security controls as a quick fix (e.g., verify=False, chmod 777).",
         ai_specific=True,
     ),
-    "CWE-AI-004": CWEEntry(
-        cwe_id="CWE-AI-004",
+    "AR-004": CWEEntry(
+        cwe_id="AR-004",
         name="Vulnerability Migration",
         category=VulnCategory.VULNERABILITY_MIGRATION,
         default_severity=Severity.MEDIUM,
