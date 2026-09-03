@@ -147,10 +147,10 @@ vulnerability class differs from the fixed vulnerability class.
 | CWE-798   | Hardcoded Credentials       | Secrets               | No          |
 | CWE-295   | TLS Verification Disabled   | Misconfiguration      | Partially   |
 | CWE-327   | Weak Cryptographic Algo     | Crypto Failure        | No          |
-| CWE-AI-001| Hallucinated Dependency     | Supply Chain          | **Yes**     |
-| CWE-AI-002| Insecure Version Downgrade  | Dependencies          | **Yes**     |
-| CWE-AI-003| Security Shortcut           | Misconfiguration      | **Yes**     |
-| CWE-AI-004| Vulnerability Migration     | Access Control        | **Yes**     |
+| AR-001| Hallucinated Dependency     | Supply Chain          | **Yes**     |
+| AR-002| Insecure Version Downgrade  | Dependencies          | **Yes**     |
+| AR-003| Security Shortcut           | Misconfiguration      | **Yes**     |
+| AR-004| Vulnerability Migration     | Access Control        | **Yes**     |
 
 ### 3.4 Security Shortcut Taxonomy
 
@@ -160,12 +160,12 @@ Agents employ "dangerous shortcuts" to resolve errors quickly:
 |--------------------------|------------------------|------------------------|
 | `verify=False`           | SSLError               | CWE-295                |
 | `chmod 777`              | PermissionError        | CWE-732                |
-| `CORS allow *`           | CORSError              | CWE-AI-003             |
-| `disable CSRF`           | CSRFError              | CWE-AI-003             |
+| `CORS allow *`           | CORSError              | AR-003             |
+| `disable CSRF`           | CSRFError              | AR-003             |
 | `shell=True`             | subprocess error       | CWE-78                 |
 | Hard-coded token         | AuthenticationError    | CWE-798                |
 | Remove auth middleware   | 401/403 error          | CWE-306                |
-| Use outdated package     | DeprecationError       | CWE-AI-002             |
+| Use outdated package     | DeprecationError       | AR-002             |
 
 ---
 
@@ -254,12 +254,12 @@ with an average SRR of Y across all agents and task types.
 
 **Finding**: Hardcoded credentials (CWE-798) and TLS verification bypass (CWE-295)
 are the most common non-AI-specific regressions. Among AI-specific categories,
-Security Shortcuts (CWE-AI-003) are most prevalent.
+Security Shortcuts (AR-003) are most prevalent.
 
 ### 5.3 RQ3: Error Type → Regression Type
 
 **Finding**: Strong per-error-class patterns:
-- `ModuleNotFoundError` → Hallucinated Dependency (CWE-AI-001) [65% rate]
+- `ModuleNotFoundError` → Hallucinated Dependency (AR-001) [65% rate]
 - `SSLError` → TLS Disabled (CWE-295) [72% rate]
 - `PermissionError` → Bad Permissions (CWE-732) [55% rate]
 

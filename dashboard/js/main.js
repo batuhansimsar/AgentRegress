@@ -182,14 +182,14 @@ function drawVulnCategoryChart(experiments) {
     exp.regression_events.forEach(ev => {
       const cwe = ev.introduced_cwe;
       counts[cwe] = (counts[cwe] || 0) + 1;
-      if (!aiFlags[cwe]) aiFlags[cwe] = ev.is_cross_class || cwe.startsWith('CWE-AI');
+      if (!aiFlags[cwe]) aiFlags[cwe] = ev.is_cross_class || cwe.startsWith('AR-');
     });
   });
 
   const data = Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 12)
-    .map(([cwe, count]) => ({ cwe, count, ai: aiFlags[cwe] || cwe.startsWith('CWE-AI') }));
+    .map(([cwe, count]) => ({ cwe, count, ai: aiFlags[cwe] || cwe.startsWith('AR-') }));
 
   const margin = { top: 8, right: 24, bottom: 60, left: 60 };
   const W = container.clientWidth || 900;
@@ -287,8 +287,8 @@ function drawErrorTriggerChart(errorAnalysis) {
     .attr('cx', d => x(d.probability))
     .attr('cy', d => y(d.error) + y.bandwidth() / 2)
     .attr('r', 7)
-    .attr('fill', d => d.cwe.startsWith('CWE-AI') ? '#7c3aed' : '#ef4444')
-    .attr('stroke', d => d.cwe.startsWith('CWE-AI') ? '#8b5cf6' : '#f87171')
+    .attr('fill', d => d.cwe.startsWith('AR-') ? '#7c3aed' : '#ef4444')
+    .attr('stroke', d => d.cwe.startsWith('AR-') ? '#8b5cf6' : '#f87171')
     .attr('stroke-width', 2)
     .on('mouseover', (event, d) => {
       tooltip.style('opacity', 1).html(
@@ -816,10 +816,10 @@ function renderTaxonomyGrid() {
     { cwe: 'CWE-79',    name: 'Cross-Site Scripting (XSS)',   sev: 'medium',   ai: false },
     { cwe: 'CWE-732',   name: 'Incorrect Permissions',        sev: 'medium',   ai: false },
     { cwe: 'CWE-502',   name: 'Unsafe Deserialization',       sev: 'high',     ai: false },
-    { cwe: 'CWE-AI-001',name: 'Hallucinated Dependency',      sev: 'high',     ai: true  },
-    { cwe: 'CWE-AI-002',name: 'Insecure Version Downgrade',   sev: 'medium',   ai: true  },
-    { cwe: 'CWE-AI-003',name: 'Security Shortcut',            sev: 'high',     ai: true  },
-    { cwe: 'CWE-AI-004',name: 'Vulnerability Migration',      sev: 'medium',   ai: true  },
+    { cwe: 'AR-001',name: 'Hallucinated Dependency',      sev: 'high',     ai: true  },
+    { cwe: 'AR-002',name: 'Insecure Version Downgrade',   sev: 'medium',   ai: true  },
+    { cwe: 'AR-003',name: 'Security Shortcut',            sev: 'high',     ai: true  },
+    { cwe: 'AR-004',name: 'Vulnerability Migration',      sev: 'medium',   ai: true  },
   ];
 
   grid.innerHTML = taxonomy.map(t => `

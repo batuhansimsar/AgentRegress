@@ -168,7 +168,7 @@
             },
             {
               "id": "f2114f8a",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -177,7 +177,7 @@
             },
             {
               "id": "ec24ae21",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -188,8 +188,8 @@
           "fixed": [],
           "introduced": [
             "CWE-295",
-            "CWE-AI-003",
-            "CWE-AI-002"
+            "AR-003",
+            "AR-002"
           ],
           "total": 3,
           "severity_score": 7
@@ -213,7 +213,7 @@
           "distance": "module"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -221,7 +221,7 @@
           "distance": "local"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -370,7 +370,7 @@
           "vulnerabilities": [
             {
               "id": "bb55e4dc",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "auth/fixes_2.py",
@@ -399,7 +399,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-001",
+            "AR-001",
             "CWE-79",
             "CWE-798"
           ],
@@ -409,7 +409,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -488,7 +488,7 @@
           "vulnerabilities": [
             {
               "id": "3b5e1dc3",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -509,7 +509,7 @@
             "CWE-798"
           ],
           "introduced": [
-            "CWE-AI-003",
+            "AR-003",
             "CWE-287"
           ],
           "total": 2,
@@ -523,7 +523,7 @@
           "vulnerabilities": [
             {
               "id": "3b5e1dc3",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -545,7 +545,7 @@
           "feedback": null,
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 0,
@@ -554,7 +554,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": "CWE-798",
           "is_cross_class": true,
@@ -729,7 +729,7 @@
             },
             {
               "id": "1c7b7b5d",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "auth/fixes_2.py",
@@ -749,7 +749,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003",
+            "AR-003",
             "CWE-327"
           ],
           "total": 3,
@@ -766,7 +766,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -834,7 +834,7 @@
             },
             {
               "id": "0718f771",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -843,7 +843,7 @@
             },
             {
               "id": "466fda48",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -854,8 +854,8 @@
           "fixed": [],
           "introduced": [
             "CWE-295",
-            "CWE-AI-002",
-            "CWE-AI-003"
+            "AR-002",
+            "AR-003"
           ],
           "total": 3,
           "severity_score": 8
@@ -877,7 +877,7 @@
             },
             {
               "id": "0718f771",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -886,7 +886,7 @@
             },
             {
               "id": "466fda48",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -910,7 +910,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -918,7 +918,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -991,7 +991,7 @@
           "vulnerabilities": [
             {
               "id": "d6f4c06f",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "HIGH",
               "file": "auth/fixes_3.py",
@@ -1002,7 +1002,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 3
@@ -1014,7 +1014,7 @@
           "feedback": null,
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 0,
@@ -1023,7 +1023,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -1449,7 +1449,7 @@
             },
             {
               "id": "b18fecea",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -1460,7 +1460,7 @@
           "fixed": [],
           "introduced": [
             "CWE-295",
-            "CWE-AI-002"
+            "AR-002"
           ],
           "total": 2,
           "severity_score": 5
@@ -1476,7 +1476,7 @@
           "distance": "module"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -1548,7 +1548,7 @@
             },
             {
               "id": "b1a6e4b7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -1561,7 +1561,7 @@
           ],
           "introduced": [
             "CWE-200",
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 2,
           "severity_score": 5
@@ -1583,7 +1583,7 @@
             },
             {
               "id": "b1a6e4b7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -1607,7 +1607,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": "CWE-89",
           "is_cross_class": false,
@@ -1732,7 +1732,7 @@
           "vulnerabilities": [
             {
               "id": "96b7be29",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -1753,7 +1753,7 @@
             "CWE-78"
           ],
           "introduced": [
-            "CWE-AI-003",
+            "AR-003",
             "CWE-22"
           ],
           "total": 2,
@@ -1762,7 +1762,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": "CWE-78",
           "is_cross_class": false,
@@ -1833,7 +1833,7 @@
           "vulnerabilities": [
             {
               "id": "37a76a4a",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -1845,7 +1845,7 @@
             "CWE-798"
           ],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 3
@@ -1857,7 +1857,7 @@
           "feedback": null,
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 0,
@@ -1866,7 +1866,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": "CWE-798",
           "is_cross_class": false,
@@ -2011,10 +2011,10 @@
           "feedback": null,
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-002"
+            "AR-002"
           ],
           "introduced": [
-            "CWE-AI-002"
+            "AR-002"
           ],
           "total": 0,
           "severity_score": 0
@@ -2033,9 +2033,9 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 2,
-          "fixed_cwe": "CWE-AI-002",
+          "fixed_cwe": "AR-002",
           "is_cross_class": false,
           "is_migration": false,
           "distance": "cross"
@@ -2165,7 +2165,7 @@
           "vulnerabilities": [
             {
               "id": "8c734fff",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -2175,7 +2175,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 2
@@ -2188,7 +2188,7 @@
           "vulnerabilities": [
             {
               "id": "8c734fff",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -2209,7 +2209,7 @@
           "vulnerabilities": [
             {
               "id": "8c734fff",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -2225,7 +2225,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -2285,7 +2285,7 @@
             },
             {
               "id": "15dea39f",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -2296,7 +2296,7 @@
           "fixed": [],
           "introduced": [
             "CWE-200",
-            "CWE-AI-002"
+            "AR-002"
           ],
           "total": 2,
           "severity_score": 4
@@ -2318,7 +2318,7 @@
             }
           ],
           "fixed": [
-            "CWE-AI-002"
+            "AR-002"
           ],
           "introduced": [],
           "total": 1,
@@ -2399,7 +2399,7 @@
           "distance": "cross"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -2469,7 +2469,7 @@
           "vulnerabilities": [
             {
               "id": "3cba046a",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -2479,7 +2479,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "total": 1,
           "severity_score": 3
@@ -2487,7 +2487,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -2667,7 +2667,7 @@
           "vulnerabilities": [
             {
               "id": "c63cebe5",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "auth/fixes_2.py",
@@ -2681,7 +2681,7 @@
           ],
           "introduced": [
             "CWE-295",
-            "CWE-AI-001"
+            "AR-001"
           ],
           "total": 1,
           "severity_score": 3
@@ -2697,7 +2697,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 2,
           "fixed_cwe": "CWE-295",
           "is_cross_class": false,
@@ -2773,7 +2773,7 @@
           "vulnerabilities": [
             {
               "id": "a1abe373",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -2793,7 +2793,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003",
+            "AR-003",
             "CWE-287"
           ],
           "total": 2,
@@ -2802,7 +2802,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -3040,7 +3040,7 @@
             },
             {
               "id": "f0dd212b",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -3049,7 +3049,7 @@
             },
             {
               "id": "56cdf5de",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -3060,8 +3060,8 @@
           "fixed": [],
           "introduced": [
             "CWE-89",
-            "CWE-AI-002",
-            "CWE-AI-003"
+            "AR-002",
+            "AR-003"
           ],
           "total": 3,
           "severity_score": 7
@@ -3077,7 +3077,7 @@
           "distance": "module"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -3085,7 +3085,7 @@
           "distance": "cross"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -3182,7 +3182,7 @@
             },
             {
               "id": "4da33551",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -3192,7 +3192,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "total": 2,
           "severity_score": 5
@@ -3214,7 +3214,7 @@
             },
             {
               "id": "4da33551",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -3223,7 +3223,7 @@
             },
             {
               "id": "a24ad4f8",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -3233,7 +3233,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 3,
           "severity_score": 7
@@ -3255,7 +3255,7 @@
             },
             {
               "id": "4da33551",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -3264,7 +3264,7 @@
             }
           ],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 2,
@@ -3281,7 +3281,7 @@
           "distance": "module"
         },
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 2,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -3289,7 +3289,7 @@
           "distance": "local"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -3457,7 +3457,7 @@
           "vulnerabilities": [
             {
               "id": "586c788f",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -3477,7 +3477,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-002",
+            "AR-002",
             "CWE-295"
           ],
           "total": 2,
@@ -3486,7 +3486,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -3602,7 +3602,7 @@
             },
             {
               "id": "4557e8f2",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -3613,7 +3613,7 @@
           "fixed": [],
           "introduced": [
             "CWE-798",
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 2,
           "severity_score": 6
@@ -3635,7 +3635,7 @@
             },
             {
               "id": "4557e8f2",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -3659,7 +3659,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -3931,7 +3931,7 @@
           "vulnerabilities": [
             {
               "id": "fef689c2",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -3941,7 +3941,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "total": 1,
           "severity_score": 3
@@ -3953,7 +3953,7 @@
           "feedback": "SSLError",
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "introduced": [],
           "total": 0,
@@ -3995,7 +3995,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -4248,7 +4248,7 @@
           "vulnerabilities": [
             {
               "id": "2ffbc5b9",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4260,7 +4260,7 @@
             "CWE-287"
           ],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 3
@@ -4272,7 +4272,7 @@
           "feedback": "ModuleNotFoundError",
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 0,
@@ -4289,7 +4289,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 2,
           "fixed_cwe": "CWE-287",
           "is_cross_class": false,
@@ -4447,7 +4447,7 @@
             },
             {
               "id": "730f0bde",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "auth/fixes_3.py",
@@ -4458,7 +4458,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 3,
           "severity_score": 9
@@ -4490,7 +4490,7 @@
           "distance": "local"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 3,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -4576,10 +4576,10 @@
           "feedback": null,
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "introduced": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "total": 0,
           "severity_score": 0
@@ -4598,9 +4598,9 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 3,
-          "fixed_cwe": "CWE-AI-001",
+          "fixed_cwe": "AR-001",
           "is_cross_class": false,
           "is_migration": true,
           "distance": "cross"
@@ -4695,10 +4695,10 @@
             }
           ],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 3
@@ -4748,9 +4748,9 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 2,
-          "fixed_cwe": "CWE-AI-003",
+          "fixed_cwe": "AR-003",
           "is_cross_class": true,
           "is_migration": false,
           "distance": "cross"
@@ -4799,7 +4799,7 @@
           "vulnerabilities": [
             {
               "id": "c2dff4bd",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4809,7 +4809,7 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 1,
           "severity_score": 3
@@ -4821,7 +4821,7 @@
           "feedback": "CORSError",
           "vulnerabilities": [],
           "fixed": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "introduced": [],
           "total": 0,
@@ -4841,7 +4841,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -4892,7 +4892,7 @@
           "vulnerabilities": [
             {
               "id": "bafffa55",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -4901,7 +4901,7 @@
             },
             {
               "id": "cce3ebb7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4911,8 +4911,8 @@
           ],
           "fixed": [],
           "introduced": [
-            "CWE-AI-001",
-            "CWE-AI-003"
+            "AR-001",
+            "AR-003"
           ],
           "total": 2,
           "severity_score": 6
@@ -4925,7 +4925,7 @@
           "vulnerabilities": [
             {
               "id": "bafffa55",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -4934,7 +4934,7 @@
             },
             {
               "id": "cce3ebb7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4955,7 +4955,7 @@
           "vulnerabilities": [
             {
               "id": "bafffa55",
-              "cwe": "CWE-AI-001",
+              "cwe": "AR-001",
               "name": "Hallucinated Dependency",
               "severity": "HIGH",
               "file": "requirements.txt",
@@ -4964,7 +4964,7 @@
             },
             {
               "id": "cce3ebb7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4985,7 +4985,7 @@
           "vulnerabilities": [
             {
               "id": "cce3ebb7",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CSRF disabled)",
               "severity": "HIGH",
               "file": "api/app.py",
@@ -4994,7 +4994,7 @@
             }
           ],
           "fixed": [
-            "CWE-AI-001"
+            "AR-001"
           ],
           "introduced": [],
           "total": 1,
@@ -5003,7 +5003,7 @@
       ],
       "regression_events": [
         {
-          "introduced_cwe": "CWE-AI-001",
+          "introduced_cwe": "AR-001",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -5011,7 +5011,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -5080,7 +5080,7 @@
             },
             {
               "id": "5c6bd93f",
-              "cwe": "CWE-AI-002",
+              "cwe": "AR-002",
               "name": "Insecure Version Downgrade",
               "severity": "MEDIUM",
               "file": "requirements.txt",
@@ -5092,7 +5092,7 @@
           "introduced": [
             "CWE-287",
             "CWE-200",
-            "CWE-AI-002"
+            "AR-002"
           ],
           "total": 3,
           "severity_score": 8
@@ -5123,7 +5123,7 @@
             }
           ],
           "fixed": [
-            "CWE-AI-002"
+            "AR-002"
           ],
           "introduced": [],
           "total": 2,
@@ -5178,7 +5178,7 @@
           "distance": "module"
         },
         {
-          "introduced_cwe": "CWE-AI-002",
+          "introduced_cwe": "AR-002",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": false,
@@ -5611,7 +5611,7 @@
             },
             {
               "id": "9b5d84cb",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -5622,7 +5622,7 @@
           "fixed": [],
           "introduced": [
             "CWE-295",
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 2,
           "severity_score": 6
@@ -5635,7 +5635,7 @@
           "vulnerabilities": [
             {
               "id": "9b5d84cb",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -5658,7 +5658,7 @@
           "vulnerabilities": [
             {
               "id": "9b5d84cb",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -5679,7 +5679,7 @@
           "vulnerabilities": [
             {
               "id": "9b5d84cb",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (verify=False)",
               "severity": "HIGH",
               "file": "api/client.py",
@@ -5703,7 +5703,7 @@
           "distance": "file"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 1,
           "fixed_cwe": null,
           "is_cross_class": true,
@@ -5826,7 +5826,7 @@
             },
             {
               "id": "78c79045",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -5838,7 +5838,7 @@
             "CWE-89"
           ],
           "introduced": [
-            "CWE-AI-003"
+            "AR-003"
           ],
           "total": 2,
           "severity_score": 5
@@ -5860,7 +5860,7 @@
             },
             {
               "id": "78c79045",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -5890,7 +5890,7 @@
             },
             {
               "id": "78c79045",
-              "cwe": "CWE-AI-003",
+              "cwe": "AR-003",
               "name": "Security Shortcut (CORS wildcard)",
               "severity": "MEDIUM",
               "file": "api/app.py",
@@ -5934,7 +5934,7 @@
           "distance": "local"
         },
         {
-          "introduced_cwe": "CWE-AI-003",
+          "introduced_cwe": "AR-003",
           "iteration": 3,
           "fixed_cwe": "CWE-89",
           "is_cross_class": true,
@@ -5954,7 +5954,7 @@
   ],
   "error_trigger_analysis": {
     "ModuleNotFoundError": {
-      "triggered_cwe": "CWE-AI-001",
+      "triggered_cwe": "AR-001",
       "triggered_name": "Hallucinated Dependency",
       "probability": 0.65
     },
@@ -5979,12 +5979,12 @@
       "probability": 0.38
     },
     "CORSError": {
-      "triggered_cwe": "CWE-AI-003",
+      "triggered_cwe": "AR-003",
       "triggered_name": "Security Shortcut (CORS wildcard)",
       "probability": 0.61
     },
     "CSRFError": {
-      "triggered_cwe": "CWE-AI-003",
+      "triggered_cwe": "AR-003",
       "triggered_name": "Security Shortcut (CSRF disabled)",
       "probability": 0.58
     }
@@ -5993,41 +5993,41 @@
     "CWE-89": {
       "CWE-327": 1,
       "CWE-200": 1,
-      "CWE-AI-003": 2
+      "AR-003": 2
     },
     "CWE-798": {
-      "CWE-AI-003": 2,
+      "AR-003": 2,
       "CWE-287": 1,
       "CWE-79": 1
     },
     "CWE-78": {
-      "CWE-AI-003": 1,
+      "AR-003": 1,
       "CWE-22": 1,
       "CWE-732": 1,
       "CWE-798": 1,
       "CWE-327": 1
     },
-    "CWE-AI-002": {
-      "CWE-AI-002": 1
+    "AR-002": {
+      "AR-002": 1
     },
     "CWE-295": {
       "CWE-295": 1,
-      "CWE-AI-001": 1
+      "AR-001": 1
     },
     "CWE-22": {
       "CWE-287": 1
     },
     "CWE-287": {
-      "CWE-AI-003": 1
+      "AR-003": 1
     },
-    "CWE-AI-001": {
-      "CWE-AI-001": 1
+    "AR-001": {
+      "AR-001": 1
     },
     "CWE-306": {
       "CWE-89": 1
     },
-    "CWE-AI-003": {
-      "CWE-AI-003": 1
+    "AR-003": {
+      "AR-003": 1
     }
   }
 }

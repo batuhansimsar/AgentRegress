@@ -36,7 +36,7 @@ function drawVulnGraph(graphData) {
     });
   });
 
-  const AI_CWES = new Set(['CWE-AI-001', 'CWE-AI-002', 'CWE-AI-003', 'CWE-AI-004']);
+  const AI_CWES = new Set(['AR-001', 'AR-002', 'AR-003', 'AR-004']);
   const CWE_NAMES = {
     'CWE-89':  'SQL Injection',
     'CWE-22':  'Path Traversal',
@@ -50,10 +50,10 @@ function drawVulnGraph(graphData) {
     'CWE-79':  'XSS',
     'CWE-732': 'Bad Permissions',
     'CWE-502': 'Unsafe Deser.',
-    'CWE-AI-001': 'Hallucinated\nDep.',
-    'CWE-AI-002': 'Version\nDowngrade',
-    'CWE-AI-003': 'Security\nShortcut',
-    'CWE-AI-004': 'Vuln\nMigration',
+    'AR-001': 'Hallucinated\nDep.',
+    'AR-002': 'Version\nDowngrade',
+    'AR-003': 'Security\nShortcut',
+    'AR-004': 'Vuln\nMigration',
   };
 
   const nodes = Array.from(nodeSet).map(id => ({

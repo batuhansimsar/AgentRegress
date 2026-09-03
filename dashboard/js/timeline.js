@@ -170,10 +170,10 @@ function shortCWEName(cwe) {
     'CWE-79': 'XSS',
     'CWE-732': 'Bad Permissions',
     'CWE-502': 'Unsafe Deser.',
-    'CWE-AI-001': 'Hallucinated Dep.',
-    'CWE-AI-002': 'Version Downgrade',
-    'CWE-AI-003': 'Security Shortcut',
-    'CWE-AI-004': 'Vuln Migration',
+    'AR-001': 'Hallucinated Dep.',
+    'AR-002': 'Version Downgrade',
+    'AR-003': 'Security Shortcut',
+    'AR-004': 'Vuln Migration',
   };
   return map[cwe] || cwe;
 }

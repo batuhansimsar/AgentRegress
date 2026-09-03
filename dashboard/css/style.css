@@ -90,6 +90,15 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+.synthetic-notice {
+  padding: 10px 5vw;
+  background: #7c2d12;
+  border-bottom: 1px solid #f59e0b;
+  color: #ffedd5;
+  font-size: 13px;
+  text-align: center;
+}
+
 .header-inner {
   max-width: 1400px;
   margin: 0 auto;

@@ -134,9 +134,9 @@ REGRESSION_VULNS = [
      "file": "auth/passwords.py", "module": "auth"},
     {"cwe": "CWE-200", "name": "Sensitive Data Exposure", "severity": "MEDIUM", "ai": False,
      "file": "api/views.py", "module": "api"},
-    {"cwe": "CWE-AI-001", "name": "Hallucinated Dependency", "severity": "HIGH", "ai": True,
+    {"cwe": "AR-001", "name": "Hallucinated Dependency", "severity": "HIGH", "ai": True,
      "file": "requirements.txt", "module": "dependencies"},
-    {"cwe": "CWE-AI-003", "name": "Security Shortcut (verify=False)", "severity": "HIGH", "ai": True,
+    {"cwe": "AR-003", "name": "Security Shortcut (verify=False)", "severity": "HIGH", "ai": True,
      "file": "api/client.py", "module": "api"},
     {"cwe": "CWE-287", "name": "Improper Authentication", "severity": "CRITICAL", "ai": False,
      "file": "auth/middleware.py", "module": "auth"},
@@ -148,24 +148,24 @@ REGRESSION_VULNS = [
      "file": "templates/dashboard.html", "module": "frontend"},
     {"cwe": "CWE-22", "name": "Path Traversal", "severity": "HIGH", "ai": False,
      "file": "api/files.py", "module": "api"},
-    {"cwe": "CWE-AI-002", "name": "Insecure Version Downgrade", "severity": "MEDIUM", "ai": True,
+    {"cwe": "AR-002", "name": "Insecure Version Downgrade", "severity": "MEDIUM", "ai": True,
      "file": "requirements.txt", "module": "dependencies"},
-    {"cwe": "CWE-AI-003", "name": "Security Shortcut (CORS wildcard)", "severity": "MEDIUM", "ai": True,
+    {"cwe": "AR-003", "name": "Security Shortcut (CORS wildcard)", "severity": "MEDIUM", "ai": True,
      "file": "api/app.py", "module": "api"},
-    {"cwe": "CWE-AI-003", "name": "Security Shortcut (CSRF disabled)", "severity": "HIGH", "ai": True,
+    {"cwe": "AR-003", "name": "Security Shortcut (CSRF disabled)", "severity": "HIGH", "ai": True,
      "file": "api/app.py", "module": "api"},
 ]
 
 # ─── Error triggers (RQ: which errors trigger which regressions) ─────────────
 
 ERROR_TRIGGERS = {
-    "ModuleNotFoundError": {"cwe": "CWE-AI-001", "name": "Hallucinated Dependency", "probability": 0.65},
+    "ModuleNotFoundError": {"cwe": "AR-001", "name": "Hallucinated Dependency", "probability": 0.65},
     "AuthenticationError": {"cwe": "CWE-287", "name": "Improper Authentication", "probability": 0.45},
     "PermissionError": {"cwe": "CWE-732", "name": "Incorrect Permission Assignment", "probability": 0.55},
     "SSLError": {"cwe": "CWE-295", "name": "TLS Verification Disabled", "probability": 0.72},
     "DatabaseError": {"cwe": "CWE-89", "name": "SQL Injection (re-introduced)", "probability": 0.38},
-    "CORSError": {"cwe": "CWE-AI-003", "name": "Security Shortcut (CORS wildcard)", "probability": 0.61},
-    "CSRFError": {"cwe": "CWE-AI-003", "name": "Security Shortcut (CSRF disabled)", "probability": 0.58},
+    "CORSError": {"cwe": "AR-003", "name": "Security Shortcut (CORS wildcard)", "probability": 0.61},
+    "CSRFError": {"cwe": "AR-003", "name": "Security Shortcut (CSRF disabled)", "probability": 0.58},
 }
 
 
