@@ -1,0 +1,21 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q tests
+      - run: python -m py_compile agents/*.py regression/*.py scanners/base_scanner.py scanners/sast/*.py scanners/secrets/*.py scanners/dependencies/*.py benchmarks/*.py run_experiment.py analysis/analyze_runs.py

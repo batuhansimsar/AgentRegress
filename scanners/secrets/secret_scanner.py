@@ -45,13 +45,13 @@ SECRET_PATTERNS: list[tuple[str, re.Pattern, str, Severity]] = [
      "CWE-295", Severity.HIGH),
     ("CORS Wildcard",
      re.compile(r'CORS[^;]*\*|Access-Control-Allow-Origin.*\*', re.IGNORECASE),
-     "CWE-AI-003", Severity.MEDIUM),
+     "AR-003", Severity.MEDIUM),
     ("Chmod 777",
      re.compile(r'chmod\s+(?:0?777|a\+rwx)', re.IGNORECASE),
-     "CWE-AI-003", Severity.HIGH),
+     "AR-003", Severity.HIGH),
     ("CSRF Disabled",
      re.compile(r'csrf(?:_exempt|_disable|\.exempt|_protection\s*=\s*False)', re.IGNORECASE),
-     "CWE-AI-003", Severity.HIGH),
+     "AR-003", Severity.HIGH),
     ("Debug Mode Enabled",
      re.compile(r'DEBUG\s*=\s*True|app\.run\([^)]*debug\s*=\s*True', re.IGNORECASE),
      "CWE-200", Severity.MEDIUM),
@@ -87,6 +87,7 @@ class SecretScanner(BaseScanner):
     def scan(self) -> list[Vulnerability]:
         """Walk repo and scan all text files for secrets."""
         vulns = []
+        scanned_files = 0
         for root, dirs, files in os.walk(self.repo_path):
             # Skip unwanted dirs
             dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
@@ -103,6 +104,7 @@ class SecretScanner(BaseScanner):
                         lines = f.readlines()
                 except (PermissionError, IsADirectoryError):
                     continue
+                scanned_files += 1
 
                 for line_no, line in enumerate(lines, start=1):
                     # Skip comment lines
@@ -133,4 +135,9 @@ class SecretScanner(BaseScanner):
                                 vuln.shortcut_type = SecurityShortcutType.DISABLE_CSRF
                             vulns.append(vuln)
 
+        self.last_raw = {
+            "scanner": self.name,
+            "scanned_files": scanned_files,
+            "findings": [vuln.to_dict() for vuln in vulns],
+        }
         return vulns

@@ -22,6 +22,8 @@ import os
 import time
 from typing import Optional
 
+from dotenv import load_dotenv
+
 from agents.base_agent import BaseAgent
 
 
@@ -50,6 +52,9 @@ class GeminiAgent(BaseAgent):
         temperature: float = 0.0,
         max_tokens: int = 8192,
     ):
+        # Local `.env` support is for development only; `.env` is gitignored.
+        # An explicitly exported GEMINI_API_KEY still takes precedence.
+        load_dotenv()
         super().__init__(
             api_key=api_key or os.environ.get("GEMINI_API_KEY"),
             temperature=temperature,

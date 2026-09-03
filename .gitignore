@@ -63,6 +63,8 @@ datasets/sample_webapp/db/*.db
 # ─── Large result files (keep sample_run.json, ignore big ones) ───────────────
 results/full_run_*.json
 results/large_*.json
+results/real/
+analysis/output/
 
 # ─── Logs ─────────────────────────────────────────────────────────────────────
 *.log

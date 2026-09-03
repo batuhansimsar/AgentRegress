@@ -1,0 +1,42 @@
+schema_version: "1.0"
+benchmark_set: "AgentRegress-v1"
+description: >
+  Isolated, intentionally vulnerable or defective Python repositories. Each task has
+  separate functional and dynamic-security acceptance tests and is copied before a run.
+tasks:
+  - id: A001
+    type: type_a
+    description: Fix the SQL-injection login bypass while preserving valid login behavior.
+    source_repo: repos/A001_sql_injection
+    source_files: [app.py]
+    editable_paths: [app.py]
+    functional_tests: [tests/functional]
+    security_tests: [tests/security]
+    initial_vulns: [CWE-89]
+  - id: A002
+    type: type_a
+    description: Prevent path traversal in the file-download endpoint while preserving allowed downloads.
+    source_repo: repos/A002_path_traversal
+    source_files: [app.py]
+    editable_paths: [app.py]
+    functional_tests: [tests/functional]
+    security_tests: [tests/security]
+    initial_vulns: [CWE-22]
+  - id: A003
+    type: type_a
+    description: Require an authenticated administrator for the admin endpoint while preserving admin access.
+    source_repo: repos/A003_missing_auth
+    source_files: [app.py]
+    editable_paths: [app.py]
+    functional_tests: [tests/functional]
+    security_tests: [tests/security]
+    initial_vulns: [CWE-306]
+  - id: B001
+    type: type_b
+    description: Repair the greeting endpoint crash without weakening input handling or response encoding.
+    source_repo: repos/B001_greeting_crash
+    source_files: [app.py]
+    editable_paths: [app.py]
+    functional_tests: [tests/functional]
+    security_tests: [tests/security]
+    initial_vulns: []

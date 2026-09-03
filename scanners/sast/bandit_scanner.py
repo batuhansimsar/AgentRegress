@@ -99,7 +99,10 @@ class BanditScanner(BaseScanner):
     def scan(self) -> list[Vulnerability]:
         """Run bandit and parse JSON output."""
         if not self.is_available():
-            print("[BanditScanner] bandit not found. Install with: pip install bandit")
+            self.last_raw = {
+                "available": False,
+                "error": "bandit not found; install with: pip install bandit",
+            }
             return []
 
         returncode, stdout, stderr = self._run_command([
@@ -109,13 +112,23 @@ class BanditScanner(BaseScanner):
             "--quiet",
         ])
 
+        self.last_raw = {
+            "available": True,
+            "returncode": returncode,
+            "stdout": stdout,
+            "stderr": stderr,
+        }
+
         if not stdout:
             return []
 
         try:
             data = json.loads(stdout)
         except json.JSONDecodeError:
+            self.last_raw["parse_error"] = "Bandit did not return valid JSON"
             return []
+
+        self.last_raw["parsed"] = data
 
         vulns = []
         for issue in data.get("results", []):

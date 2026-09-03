@@ -23,11 +23,20 @@ class BaseScanner(ABC):
 
     def __init__(self, repo_path: str):
         self.repo_path = repo_path
+        # Every scanner exposes its unmodified tool result (or a structured
+        # equivalent for in-process scanners) for experiment reproducibility.
+        self.last_raw: dict = {}
 
     @abstractmethod
     def scan(self) -> list[Vulnerability]:
         """Run the scanner and return a list of found vulnerabilities."""
         ...
+
+    def scan_with_raw(self) -> tuple[list[Vulnerability], dict]:
+        """Run a scan and return normalized findings plus raw scanner evidence."""
+        findings = self.scan()
+        raw = self.last_raw or {"findings": [finding.to_dict() for finding in findings]}
+        return findings, raw
 
     def is_available(self) -> bool:
         """Check if the scanner tool is installed and available."""
@@ -94,7 +103,7 @@ class BaseScanner(ABC):
             description=description or (entry.description if entry else ""),
             ai_specific=ai_specific,
             iteration=iteration,
-            timestamp=datetime.datetime.utcnow().isoformat(),
+            timestamp=datetime.datetime.now(datetime.UTC).isoformat(),
         )
 
 

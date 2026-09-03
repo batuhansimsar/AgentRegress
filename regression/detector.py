@@ -70,9 +70,7 @@ class RegressionDetector:
         events = []
         for vuln in introduced:
             fixed_cwe = fixed[0].cwe if fixed else None
-            is_cross = False
-            if fixed:
-                is_cross = fixed[0].category != vuln.category
+            is_cross = bool(fixed and fixed[0].category != vuln.category)
 
             distance = RegressionDistance.MODULE_LEVEL
             if curr.changed_files:
@@ -106,9 +104,8 @@ class RegressionDetector:
 
     @staticmethod
     def _vuln_key(v: Vulnerability) -> str:
-        """Create a stable key for a vulnerability (for deduplication)."""
-        # Key on CWE + file path (not line number, as lines shift)
-        return f"{v.cwe}::{v.file_path}"
+        """Use the full instance fingerprint; CWE/file alone merges distinct findings."""
+        return v.fingerprint
 
     def vulnerability_graph(self) -> dict:
         """

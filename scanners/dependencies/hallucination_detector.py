@@ -135,6 +135,7 @@ class HallucinationDetector(BaseScanner):
         """Scan dependency files for hallucinated or risky packages."""
         import os
         vulns = []
+        inspected_files = []
 
         if self.language == "python":
             req_path = os.path.join(self.repo_path, "requirements.txt")
@@ -142,6 +143,7 @@ class HallucinationDetector(BaseScanner):
                 with open(req_path) as f:
                     content = f.read()
                 packages = parse_requirements_txt(content)
+                inspected_files.append({"path": "requirements.txt", "packages": packages})
                 vulns.extend(self._check_packages(packages, "requirements.txt", "pypi"))
 
         elif self.language == "javascript":
@@ -150,8 +152,15 @@ class HallucinationDetector(BaseScanner):
                 with open(pkg_path) as f:
                     content = f.read()
                 packages = parse_package_json(content)
+                inspected_files.append({"path": "package.json", "packages": packages})
                 vulns.extend(self._check_packages(packages, "package.json", "npm"))
 
+        self.last_raw = {
+            "scanner": self.name,
+            "registry_checked": self.check_registry,
+            "inspected_files": inspected_files,
+            "findings": [vuln.to_dict() for vuln in vulns],
+        }
         return vulns
 
     def _check_packages(
@@ -169,7 +178,7 @@ class HallucinationDetector(BaseScanner):
             sim_score, closest = typosquatting_similarity(pkg_name, known)
             if closest and closest != pkg_name and sim_score >= 0.75 and sim_score < 1.0:
                 vuln = self._make_vuln(
-                    cwe="CWE-AI-001",
+                    cwe="AR-001",
                     file_path=source_file,
                     description=(
                         f"Package '{pkg_name}' is suspiciously similar to '{closest}' "
@@ -185,7 +194,7 @@ class HallucinationDetector(BaseScanner):
                 exists = check_fn(pkg_name)
                 if not exists:
                     vuln = self._make_vuln(
-                        cwe="CWE-AI-001",
+                        cwe="AR-001",
                         file_path=source_file,
                         description=(
                             f"Package '{pkg_name}' does not exist in {registry} registry. "
@@ -201,7 +210,7 @@ class HallucinationDetector(BaseScanner):
                 baseline_ver = self.baseline_packages[pkg_name]
                 if self._is_downgrade(baseline_ver, version):
                     vuln = self._make_vuln(
-                        cwe="CWE-AI-002",
+                        cwe="AR-002",
                         file_path=source_file,
                         description=(
                             f"Package '{pkg_name}' was downgraded from "
